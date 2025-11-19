@@ -1,6 +1,7 @@
-import pygame
-import sys
 import random
+import sys
+
+import pygame
 
 # Game constants
 WIDTH, HEIGHT = 800, 600
@@ -48,7 +49,10 @@ class Paddle:
 class Ball:
     def __init__(self):
         self.rect = pygame.Rect(
-            WIDTH // 2 - BALL_SIZE // 2, HEIGHT // 2 - BALL_SIZE // 2, BALL_SIZE, BALL_SIZE
+            WIDTH // 2 - BALL_SIZE // 2,
+            HEIGHT // 2 - BALL_SIZE // 2,
+            BALL_SIZE,
+            BALL_SIZE,
         )
         self.vel = pygame.Vector2(0, 0)
         self.serve(direction=random.choice([-1, 1]))
@@ -57,7 +61,9 @@ class Ball:
         # Randomize initial Y velocity a bit
         self.rect.center = (WIDTH // 2, HEIGHT // 2)
         speed_x = BALL_SPEED_X * direction
-        speed_y = random.choice([-1, 1]) * random.uniform(BALL_SPEED_Y * 0.5, BALL_SPEED_Y)
+        speed_y = random.choice([-1, 1]) * random.uniform(
+            BALL_SPEED_Y * 0.5, BALL_SPEED_Y
+        )
         self.vel.update(speed_x, speed_y)
 
     def update(self):
@@ -124,7 +130,9 @@ def draw_center_line(surface):
     x = WIDTH // 2
     y = 0
     while y < HEIGHT:
-        pygame.draw.rect(surface, (80, 80, 80), (x - 2, y, 4, dash_height), border_radius=2)
+        pygame.draw.rect(
+            surface, (80, 80, 80), (x - 2, y, 4, dash_height), border_radius=2
+        )
         y += dash_height + gap
 
 
